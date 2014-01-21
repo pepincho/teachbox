@@ -1,4 +1,13 @@
 TeachboxNoit::Application.routes.draw do
+  resources :comments_open_group_posts
+
+
+  resources :open_group_posts
+
+
+  resources :open_groups
+
+
   root to: 'menu#index'
   devise_for :users
 
