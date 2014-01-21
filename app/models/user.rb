@@ -17,4 +17,10 @@ class User < ActiveRecord::Base
   has_many :likes_open_groups
   has_many :likes_open_group_posts
   has_many :comments_open_group_posts
+
+  has_many :user_course
+  has_many :course_posts
+  has_many :likes_courses
+  has_many :likes_course_posts
+  has_many :comments_course_posts
 end

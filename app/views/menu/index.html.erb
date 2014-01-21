@@ -3,7 +3,8 @@
   <p> Dobre doshul </p>
   <%= form_for("user", :url => user_session_path) do |f| %>
     <div> 
-      <%= link_to "Create Open Group", new_open_group_path() %>
+      <%= link_to "Create Open Group", new_open_group_path() %> <br />
+      <%= link_to "Create Course", new_course_path() %>
     </div>
   <% end %> 
 

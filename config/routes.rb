@@ -1,4 +1,13 @@
 TeachboxNoit::Application.routes.draw do
+  resources :comments_course_posts
+
+
+  resources :course_posts
+
+
+  resources :courses
+
+
   resources :comments_open_group_posts
 
 
