@@ -23,7 +23,7 @@ end
  gem 'activeadmin'
  gem 'sass-rails'
  gem "jquery-rails", "< 3.0.0"
-
+ gem "paperclip", "~> 2.3"
 
 
 # To use ActiveModel has_secure_password

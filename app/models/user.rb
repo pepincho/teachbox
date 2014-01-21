@@ -5,9 +5,12 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :email, :name, :password
+  attr_accessible :email, :name, :password, :attach, :pic
   validates :name, :presence => true    
   validates :email, :presence => true
+
+  has_attached_file :pic
+  has_attached_file :attach
 
   has_many :user_open_group
   has_many :open_group_posts

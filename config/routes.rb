@@ -16,6 +16,11 @@ TeachboxNoit::Application.routes.draw do
 
   resources :users
 
+  resources :open_groups do
+     post :join, :on => :collection
+     post :like, :on => :collection
+     post :like_post, :on => :collection
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

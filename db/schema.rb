@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140121151745) do
+ActiveRecord::Schema.define(:version => 20140121155922) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -74,8 +74,12 @@ ActiveRecord::Schema.define(:version => 20140121151745) do
     t.integer  "open_group_id"
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "attach_file_name"
+    t.string   "attach_content_type"
+    t.integer  "attach_file_size"
+    t.datetime "attach_updated_at"
   end
 
   create_table "open_groups", :force => true do |t|
@@ -107,6 +111,14 @@ ActiveRecord::Schema.define(:version => 20140121151745) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "attach_file_name"
+    t.string   "attach_content_type"
+    t.integer  "attach_file_size"
+    t.datetime "attach_updated_at"
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
