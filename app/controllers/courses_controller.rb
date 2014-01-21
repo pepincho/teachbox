@@ -24,13 +24,19 @@ class CoursesController < ApplicationController
         @usersname.push(User.find(user.user_id).name) 
           if current_user.present?
               if user.user_id == current_user.id 
-                @pesho = true
+                @pesho1 = true
                 break
               else
-                @pesho = false 
+                @pesho1 = false 
               end
           end
       end 
+    if @course.user_id == current_user.id
+      @admin = true
+      
+    else
+      @admin = false
+    end
 
     @neshto = CoursePost.where("course_id = ?", params[:id]) 
       
@@ -38,10 +44,10 @@ class CoursesController < ApplicationController
     @likes.each do |user| 
         if current_user.present?
             if user.user_id == current_user.id 
-              @ivan = true
+              @ivan1 = true
               break
             else
-              @ivan = false 
+              @ivan1 = false 
             end
         end
     end
@@ -51,6 +57,7 @@ end
   # GET /courses/new.json
   def new
     @course = Course.new
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -67,6 +74,7 @@ end
   # POST /courses.json
   def create
     @course = Course.new(params[:course])
+    @course.user_id = current_user.id
 
     respond_to do |format|
       if @course.save
@@ -137,4 +145,18 @@ end
         # format.json { head :no_content }
       end
    end
+
+   def join
+      # join_params = params[:user_open_group]
+
+      user = UserCourse.new
+      user.user_id = current_user.id
+      user.course_id = params[:id]
+      user.save
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+        # format.json { head :no_content }
+    end
+  end 
 end
