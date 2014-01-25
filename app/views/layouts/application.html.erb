@@ -2,11 +2,13 @@
 <html>
 <head>
   <title>Salam</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "metro-bootstrap", :media => "all" %>
+  <%= stylesheet_link_tag    "style", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
-<body>
+<body class="metro">
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.
   <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
