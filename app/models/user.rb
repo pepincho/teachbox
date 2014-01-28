@@ -23,4 +23,10 @@ class User < ActiveRecord::Base
   has_many :likes_courses
   has_many :likes_course_posts
   has_many :comments_course_posts
+
+  has_many :user_closed_group
+  has_many :closed_group_posts
+  has_many :likes_closed_group
+  has_many :likes_closed_group_posts
+  has_many :comments_closed_group_posts
 end

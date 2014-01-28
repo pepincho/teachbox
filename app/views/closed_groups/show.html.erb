@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Admin:</b>
+  <%= @closed_group.admin_id %>
+</p>
+
+<p>
+  <b>Decription:</b>
+  <%= @closed_group.decription %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @closed_group.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_closed_group_path(@closed_group) %> |
+<%= link_to 'Back', closed_groups_path %>
