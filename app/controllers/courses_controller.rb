@@ -152,6 +152,7 @@ end
       user = UserCourse.new
       user.user_id = current_user.id
       user.course_id = params[:id]
+      Course.where(:id => user.course_id).update_all("counter = counter + 1")
       user.save
 
     respond_to do |format|

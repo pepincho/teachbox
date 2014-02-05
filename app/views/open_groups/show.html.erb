@@ -18,7 +18,7 @@
 <% if current_user.present? && !@pesho %>
 	<%= link_to "Join", {:controller => :open_groups, :action => :join, :id => @open_group.id }, {:method => :post } %>
 <% end %>
-<% if current_user.present? && !@ivan %>
+<% if current_user.present? && !@ivan && @pesho %>
 	<%= link_to "Like", {:controller => :open_groups, :action => :like, :id => @open_group.id }, {:method => :post } %>
 <% end %>
 

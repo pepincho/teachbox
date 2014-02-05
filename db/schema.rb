@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140128154113) do
+ActiveRecord::Schema.define(:version => 20140204162441) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "namespace"
@@ -63,8 +63,9 @@ ActiveRecord::Schema.define(:version => 20140128154113) do
     t.integer  "admin_id"
     t.text     "decription"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "counter",    :default => 1
   end
 
   create_table "comments_closed_group_posts", :force => true do |t|
@@ -108,8 +109,9 @@ ActiveRecord::Schema.define(:version => 20140128154113) do
     t.text     "description"
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "counter",     :default => 1
   end
 
   create_table "likes_closed_group_posts", :force => true do |t|
@@ -173,8 +175,9 @@ ActiveRecord::Schema.define(:version => 20140128154113) do
   create_table "open_groups", :force => true do |t|
     t.text     "description"
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "counter",     :default => 1
   end
 
   create_table "quick_answers", :force => true do |t|

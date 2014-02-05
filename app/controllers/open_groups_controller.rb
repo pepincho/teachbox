@@ -112,10 +112,11 @@ class OpenGroupsController < ApplicationController
 
   def join
       # join_params = params[:user_open_group]
-
+     
       user = UserOpenGroup.new
       user.user_id = current_user.id
       user.open_group_id = params[:id]
+      OpenGroup.where(:id => user.open_group_id).update_all("counter = counter + 1")
       user.save
 
     respond_to do |format|

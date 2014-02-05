@@ -19,11 +19,14 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
- gem 'devise'
- gem 'activeadmin'
- gem 'sass-rails'
- gem "jquery-rails", "< 3.0.0"
- gem "paperclip", "~> 2.3"
+gem "meta_search",    '>= 1.1.0.pre'
+gem 'execjs'
+gem 'devise'
+gem 'activeadmin'
+gem 'sass-rails' 
+gem "jquery-rails", "< 3.0.0"
+gem "paperclip", "~> 2.3"
+gem 'therubyracer', :platform => :ruby
 
 
 # To use ActiveModel has_secure_password

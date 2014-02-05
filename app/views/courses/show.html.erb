@@ -23,7 +23,7 @@
 <% if current_user.present? && !@pesho1 %>
 	<%= link_to "Join", {:controller => :courses, :action => :join, :id => @course.id }, {:method => :post } %>
 <% end %>
-<% if current_user.present? && !@ivan1 %>
+<% if current_user.present? && !@ivan1  && @pesho1 %>
 	<%= link_to "Like", {:controller => :courses, :action => :like, :id => @course.id }, {:method => :post } %>
 <% end %>
 

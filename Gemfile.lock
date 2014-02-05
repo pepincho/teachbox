@@ -163,9 +163,12 @@ DEPENDENCIES
   activeadmin
   coffee-rails (~> 3.2.1)
   devise
+  execjs
   jquery-rails (< 3.0.0)
+  meta_search (>= 1.1.0.pre)
   paperclip (~> 2.3)
   rails (= 3.2.13)
   sass-rails
   sqlite3
+  therubyracer
   uglifier (>= 1.0.3)

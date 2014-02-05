@@ -1,12 +1,143 @@
 <% if current_user.present? %>
 
-  <p> Dobre doshul </p>
+
+
+  <p> Welcome </p>
   <%= form_for("user", :url => user_session_path) do |f| %>
     <div> 
       <%= link_to "Create Open Group", new_open_group_path() %> <br />
-      <%= link_to "Create Course", new_course_path() %>
+      <%= link_to "Create Course", new_course_path() %> <br />
+      <%= link_to "Create Closed Group", new_closed_group_path() %>
     </div>
   <% end %> 
+
+  <p> Your groups: </p>
+    <% @your_opens = UserOpenGroup.all
+      @your_opens.each do |a|
+        if current_user.id == a.user_id %>
+          <%= link_to OpenGroup.find(a.open_group_id).name,  {:controller => :open_groups, :action => :show, :id => OpenGroup.find(a.open_group_id).id }, {:method => :get }  %>
+        <% end
+    end
+
+  @yours_courses = UserCourse.all
+    @yours_courses.each do |b|
+      if current_user.id == b.user_id
+        @yours1.push(Course.find(b.course_id).name) %>
+        <%= link_to Course.find(b.course_id).name,  {:controller => :open_groups, :action => :show, :id => Course.find(b.course_id).id }, {:method => :get }  %>
+      <% end
+    end
+
+  @yours_closeds = UserClosedGroup.all
+  @yours2 = Array.new
+    @yours_closeds.each do |c|
+      if current_user.id == c.user_id %>
+        <%= link_to ClosedGroup.find(c.closed_group_id).name,  {:controller => :open_groups, :action => :show, :id => ClosedGroup.find(c.closed_group_id).id }, {:method => :get }  %>
+      <% end
+    end %>
+    <br />
+    ------------------------------------------------
+    
+    
+ 
+    <p> Famous Open Groups: </p>
+      <% OpenGroup.order("counter DESC").limit(3).each do |x| %>
+        <%= x.name %> 
+        /-/
+        <%= x.description %>
+        /-/
+        <% @likes = LikesOpenGroup.where(:open_group_id => x.id) %>
+        <%= @likes.length %>
+        /-/
+        <% users = UserOpenGroup.where(:open_group_id => x.id) %>
+        <%= users.length %>
+        /-/
+
+        <% @users = UserOpenGroup.where(:open_group_id => x.id) 
+          @usersname = Array.new 
+          @users.each do |user| 
+            @usersname.push(User.find(user.user_id).name) 
+              if current_user.present?
+                if user.user_id == current_user.id 
+                  @pesho = true
+                  break
+                else
+                  @pesho = false 
+                end
+              end
+        end %>
+
+        <% if current_user.present? && !@pesho %>
+          <%= link_to "Join", {:controller => :open_groups, :action => :join, :id => x.id }, {:method => :post } %>
+        <% end %>
+        <br />
+      <% end %>
+      <br />
+    <p> Famous Courses: </p>
+      <% Course.order("counter DESC").limit(3).each do |x| %>
+        <%= x.name %>
+        /-/
+        <%= x.description %>
+        /-/
+        <% @likes = LikesCourse.where(:course_id => x.id) %>
+        <%= @likes.length %>
+        /-/
+        <% users = UserCourse.where(:open_group_id => x.id) %>
+        <%= users.length %>
+        /-/
+
+        <% @users = UserOpenGroup.where(:open_group_id => x.id) 
+          @usersname = Array.new 
+          @users.each do |user| 
+            @usersname.push(User.find(user.user_id).name) 
+              if current_user.present?
+                if user.user_id == current_user.id 
+                  @pesho = true
+                  break
+                else
+                  @pesho = false 
+                end
+              end
+        end %>
+
+        <% if current_user.present? && !@pesho %>
+          <%= link_to "Join", {:controller => :open_groups, :action => :join, :id => x.id }, {:method => :post } %>
+        <% end %>
+        <br />
+      <% end %>
+      <br />
+    <p> Famous Closed Groups: </p>
+      <% ClosedGroup.order("counter DESC").limit(3).each do |x| %>
+        <%= x.name %>
+        /-/
+        <%= x.decription %>
+        /-/
+        <% @likes = LikesClosedGroup.where(:closed_group_id => x.id) %>
+        <%= @likes.length %>
+        /-/
+        <% users = UserOpenGroup.where(:open_group_id => x.id) %>
+        <%= users.length %>
+        /-/
+
+        <% @users = UserOpenGroup.where(:open_group_id => x.id) 
+          @usersname = Array.new 
+          @users.each do |user| 
+            @usersname.push(User.find(user.user_id).name) 
+              if current_user.present?
+                if user.user_id == current_user.id 
+                  @pesho = true
+                  break
+                else
+                  @pesho = false 
+                end
+              end
+        end %>
+
+        <% if current_user.present? && !@pesho %>
+          <%= link_to "Join", {:controller => :open_groups, :action => :join, :id => x.id }, {:method => :post } %>
+        <% end %>
+        <br />
+      <% end %>
+
 
 <% else %>
     <div class="navigation-bar fixed-top dark shadow">
