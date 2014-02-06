@@ -112,7 +112,6 @@ class OpenGroupsController < ApplicationController
 
   def join
       # join_params = params[:user_open_group]
-     
       user = UserOpenGroup.new
       user.user_id = current_user.id
       user.open_group_id = params[:id]
@@ -120,7 +119,7 @@ class OpenGroupsController < ApplicationController
       user.save
 
     respond_to do |format|
-    	format.html { redirect_to :back }
+    	format.html { redirect_to '/open_groups/'+user.open_group_id.to_s }
       	# format.json { head :no_content }
     end
   end  

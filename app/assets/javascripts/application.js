@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require metro.min
+//= require jquery.min
+//= require jquery.widget.min

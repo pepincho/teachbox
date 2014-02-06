@@ -5,16 +5,18 @@
   <%= stylesheet_link_tag    "metro-bootstrap", :media => "all" %>
   <%= stylesheet_link_tag    "style", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "jquery.min", :media => "all" %>
+  <%= javascript_include_tag "active_admin", :media => "all"  %>
+  <%= javascript_include_tag "metro.min", :media => "all"  %>
+  <%= javascript_include_tag "jquery.widget", :media => "all"  %> 
+
   <%= csrf_meta_tags %>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
 <body class="metro">
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-<% end %>
+
 <%= yield %>
+
 
 </body>
 </html>

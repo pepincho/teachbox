@@ -156,7 +156,7 @@ end
       user.save
 
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_to '/courses/'+user.course_id.to_s }
         # format.json { head :no_content }
     end
   end 
