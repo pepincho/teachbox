@@ -31,6 +31,8 @@ TeachboxNoit::Application.routes.draw do
 
   resources :open_groups
 
+  resources :requests
+
 
   root to: 'menu#index'
   devise_for :users
@@ -47,7 +49,7 @@ TeachboxNoit::Application.routes.draw do
   end
 
   resources :closed_groups do
-     post :join, :on => :collection
+     post :requested, :on => :collection
      post :like, :on => :collection
      post :like_post, :on => :collection
   end

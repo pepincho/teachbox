@@ -34,6 +34,20 @@ class ClosedGroupsController < ApplicationController
           end
       end 
 
+    @users = Request.where("closed_group_id = ?", params[:id]) 
+    @usersname = Array.new 
+      @users.each do |user| 
+        @usersname.push(User.find(user.user_id).name) 
+          if current_user.present?
+              if user.user_id == current_user.id 
+                @isRequested = true
+                break
+              else
+                @isRequested = false 
+              end
+          end
+      end 
+
     @neshto = ClosedGroupPost.where("closed_group_id = ?", params[:id]) 
       
     @likes = LikesClosedGroup.where("closed_group_id = ?", params[:id]) 
@@ -120,6 +134,18 @@ end
       like.user_id = current_user.id
       like.closed_group_id = params[:id]
       like.save
+
+      respond_to do |format|
+        format.html { redirect_to :back }
+        # format.json { head :no_content }
+      end
+   end
+
+   def requested
+      req = Request.new
+      req.user_id = current_user.id
+      req.closed_group_id = params[:id]
+      req.save
 
       respond_to do |format|
         format.html { redirect_to :back }

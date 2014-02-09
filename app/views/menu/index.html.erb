@@ -96,7 +96,7 @@
                 <% OpenGroup.order("counter DESC").each do |x| %>
                     
                     <% 
-
+                      @pesho = false
                       @users = UserOpenGroup.where(:open_group_id => x.id) 
                       @usersname = Array.new 
                       @users.each do |user| 
@@ -178,7 +178,9 @@
                    broi = 0 %>
                 <% Course.order("counter DESC").each do |x| %>
              
-                    <% @users = UserCourse.where(:course_id => x.id) 
+                    <%
+                      @pesho = false
+                      @users = UserCourse.where(:course_id => x.id) 
                       @usersname = Array.new 
                       @users.each do |user| 
                         @usersname.push(User.find(user.user_id).name) 
@@ -255,21 +257,35 @@
                    broi = 0%>
                 <% ClosedGroup.order("counter DESC").each do |x| %>
              
-                    <% @users = UserClosedGroup.where(:closed_group_id => x.id) 
-                      @usersname = Array.new 
+                    <%
+                      @isJoined = false
+                      @users = UserClosedGroup.where(:closed_group_id => x.id) 
                       @users.each do |user| 
-                        @usersname.push(User.find(user.user_id).name) 
                           if current_user.present?
                             if user.user_id == current_user.id 
-                              @pesho = true
+                              @isJoined = true
                               break
                             else
-                              @pesho = false 
+                              @isJoined = false 
                             end
                           end
-                    end %>
+                    end 
 
-                    <% if current_user.present? && !@pesho
+                    @users1 = Request.where(:closed_group_id => x.id)
+                       @isReq = false
+                      @users1.each do |user| 
+                          if current_user.present?
+                            if user.user_id == current_user.id 
+                              @isReq = true
+                              break
+                            else
+                              @isReq = false 
+                            end
+                          end
+                    end 
+                      
+
+                  if current_user.present?  && !( @isReq || @isJoined )
                       count += 1
                       if count == 4
                           break
@@ -300,20 +316,18 @@
                       <%= x.decription %>
                       </td> 
                     <td  style=" border-bottom: 1px #ccc solid; width:10%;">
-                     <%= link_to image_tag("open129.png", :style => "width: 60px; height: 60px; margin-left:5px;", :class => "element"), {:controller => :closed_groups, :action => :join, :id => x.id }, {:method => :post } %>
+                     <%= link_to image_tag("open129.png", :style => "width: 60px; height: 60px; margin-left:5px;", :class => "element"), {:controller => :closed_groups, :action => :requested, :id => x.id }, {:method => :post } %>
                     </td>
                </tr>
                </table>
-             
-               <% else 
-                        count = count + 1; %>
                     <% end %>
+
             <% end %>
             <% if broi == 0 %>
                 <table style=" border: 1px #ccc solid; width:100%; margin-left:auto; margin-right: auto;" >
                   <tr>
                     <td  style=" border-bottom: 1px #ccc solid; width:10%; height: 40px; text-align: center;">
-                       Вие сте участник във всичките частни групи !
+                       Вие сте кандидадствали или сте участник във всичките частни групи !
                     </td>
                </tr>
                </table>

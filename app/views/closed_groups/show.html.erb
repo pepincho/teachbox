@@ -21,7 +21,9 @@
   
 
 
-
+<% if current_user.present? && !@isRequested %>
+  <%= link_to "Join", {:controller => :closed_groups, :action => :requested, :id => @closed_group.id }, {:method => :post } %>
+<% end %>
 
 <% if current_user.present? && !@ivan2 && @pesho2 %>
 	<%= link_to "Like", {:controller => :closed_groups, :action => :like, :id => @closed_group.id }, {:method => :post } %>
