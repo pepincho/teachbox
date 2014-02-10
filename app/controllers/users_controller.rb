@@ -15,6 +15,18 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
+    @userss = User.where("id = ?", params[:id])
+      @userss.each do |user| 
+            if current_user.present?
+              if user.id == current_user.id 
+                    @kartof = true
+                    break
+                else
+                    @kartof = false 
+                end
+            end
+        end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }

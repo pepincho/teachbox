@@ -16,5 +16,13 @@
 </p>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<br /><br />
+<% if @user.pic.exists? %>
+	<%= image_tag @user.pic.url(:medium) %> <br /><br /><br />
+	<a href="<%= @user.pic.url %> "> <b> File attached </b> </a>
+<% end %>
+<br />
+<% if current_user.present? && @kartof %>
+	<%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
 <%= link_to 'Back', users_path %>

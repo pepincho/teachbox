@@ -151,4 +151,16 @@ class OpenGroupsController < ApplicationController
     end
   end
 
+  def like_comment
+    like_comment = LikesCommentsOpenGroupPost.new
+    like_comment.user_id = current_user.id
+    like_comment.comments_open_group_post_id = params[:id]
+    like_comment.save
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      # format.json { head :no_content }
+    end
+  end
+
 end

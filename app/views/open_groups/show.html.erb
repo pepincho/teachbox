@@ -36,6 +36,7 @@
     	@martin = false
     	some = LikesOpenGroupPost.where("open_group_post_id = ?", post.id) 
     	@comments = CommentsOpenGroupPost.where("open_group_post_id = ?", post.id) 
+
     		some.each do |user| 
            		if current_user.present?
             		if user.user_id == current_user.id 
@@ -109,10 +110,31 @@
 
   		<br />
   		<% @comments.each do |comments| %>
+        <% likescomment = LikesCommentsOpenGroupPost.where("comments_open_group_post_id = ?", comments.id) %>
+        <% 
+          likescomment.each do |user| 
+            if current_user.present?
+              if user.user_id == current_user.id 
+                @patka = true
+                break
+              else
+                @patka = false 
+              end
+            end
+          end
+        %>
     		<%= User.find(comments.user_id).name %>:
-    		<%= comments.content %>
+    		<%= comments.content %> | 
+        <%= likescomment.length %> | 
+        <% if current_user.present? && !@patka %>
+          <%= link_to "Like", {:controller => :open_groups, :action => :like_comment, :id => comments.id }, {:method => :post } %>
+        <% end %>
     		<br />
+       
   		<% end %>
+
+      
+     
 	<% end %>
 </p>
 

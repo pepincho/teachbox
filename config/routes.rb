@@ -44,6 +44,7 @@ TeachboxNoit::Application.routes.draw do
      post :join, :on => :collection
      post :like, :on => :collection
      post :like_post, :on => :collection
+     post :like_comment, :on => :collection
   end
 
   resources :closed_groups do

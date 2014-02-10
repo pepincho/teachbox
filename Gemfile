@@ -27,6 +27,7 @@ gem 'sass-rails'
 gem "jquery-rails", "< 3.0.0"
 gem "paperclip", "~> 2.3"
 gem 'therubyracer', :platform => :ruby
+gem "cocaine", "= 0.3.2" 
 
 
 # To use ActiveModel has_secure_password
